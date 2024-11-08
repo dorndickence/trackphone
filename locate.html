@@ -16,17 +16,21 @@ document.addEventListener("DOMContentLoaded", () => {
   const locationDisplay = document.getElementById("locationDisplay");
 
   function showPosition({ coords: { latitude, longitude } }) {
+    console.log("Position received:", latitude, longitude);
     locationDisplay.innerHTML = `Latitude: ${latitude}<br>Longitude: ${longitude}`;
   }
 
-  function showError() {
+  function showError(error) {
+    console.log("Error retrieving location:", error.message);
     locationDisplay.innerHTML = "Unable to retrieve location. Please check your browser settings.";
   }
 
   function getLocation() {
     if ("geolocation" in navigator) {
+      console.log("Geolocation is supported. Requesting position...");
       navigator.geolocation.getCurrentPosition(showPosition, showError);
     } else {
+      console.log("Geolocation not supported.");
       locationDisplay.innerHTML = "Geolocation is not supported by this browser.";
     }
   }
@@ -37,6 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 </body>
 </html>
+
 
 
 
