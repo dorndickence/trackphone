@@ -1,4 +1,52 @@
 <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Location Display</title>
+</head>
+<body>
+
+<iframe src="https://giphy.com/embed/ygx1aGes6Vg0uv2XvL" width="480" height="269" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+<p><a href="https://giphy.com/gifs/greatbigstory-brave-diving-ygx1aGes6Vg0uv2XvL">via GIPHY</a></p>
+<p id="locationDisplay">Loading location...</p>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const locationDisplay = document.getElementById("locationDisplay");
+
+  function showPosition({ coords: { latitude, longitude } }) {
+    locationDisplay.innerHTML = `Latitude: ${latitude}<br>Longitude: ${longitude}`;
+  }
+
+  function showError() {
+    locationDisplay.innerHTML = "Unable to retrieve location. Please check your browser settings.";
+  }
+
+  function getLocation() {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(showPosition, showError);
+    } else {
+      locationDisplay.innerHTML = "Geolocation is not supported by this browser.";
+    }
+  }
+
+  getLocation();
+});
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+<!-- <!DOCTYPE html>
 <html>
 <body onLoad="getLocation()">
 
@@ -23,3 +71,4 @@ function showPosition(position) {
 
 </body>
 </html>
+ -->
